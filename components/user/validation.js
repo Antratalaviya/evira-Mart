@@ -20,6 +20,7 @@ const postProfile = {
         dateOfBirth : validation.dateReqValidation,
         mobile : validation.mobileValidation,
         gender : validation.genderValidation,
+        picture : validation.picValidation
     })
 }
 
@@ -28,10 +29,28 @@ const addSecret = {
         secret : validation.secretValidation
     })
 }
+const resetPassword = {
+    body : joi.object().keys({
+        password : validation.passwordValidation,
+        confirmPassword : validation.confirmPassword
+    })
+}
 
+const updateProfile = {
+    body: joi.object().keys({
+        email : validation.emailValidation,
+        fullname: validation.fullnameValidation,
+        nickname : validation.nicknameValidation,
+        dateOfBirth : validation.dateReqValidation,
+        mobile : validation.mobileValidation,
+        gender : validation.genderValidation,
+    })
+}
 export default {
     register,
     login,
     postProfile,
-    addSecret
+    addSecret,
+    resetPassword,
+    updateProfile
 }

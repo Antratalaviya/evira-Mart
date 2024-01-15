@@ -11,8 +11,8 @@ const _generateRefreshToken = (payload) => {
 }
 
 const encryptPayload = (data) => {  //object of data
-    let encData =  aes.encrypt(JSON.stringify(data), process.env.OUT_KEY_DATA)
-    let payload =  aes.encrypt(encData, process.env.OUT_KEY_PAYLOAD)
+    let encData = aes.encrypt(JSON.stringify(data), process.env.OUT_KEY_DATA)
+    let payload = aes.encrypt(encData, process.env.OUT_KEY_PAYLOAD)
     return {
         data: encData,
         payload: payload
@@ -27,33 +27,38 @@ const decryptPayload = (payload) => {
     }
 }
 
-const generateUserAccessToken = (payload)=>{ //in object
+const generateUserAccessToken = (payload) => { //in object
     let encryptPayload = encryptPayload(payload)
-    const accessToken = _generateAccessToken(encryptPayload.payload,userTokenRole.accessToken)
+    const accessToken = _generateAccessToken(encryptPayload.payload, userTokenRole.accessToken)
     const refreshToken = _generateRefreshToken(encryptPayload.payload)
 
-    let data = { accessToken, refreshToken}
+    let data = { accessToken, refreshToken }
     return data;
-} 
+}
 
-const generateRegisterToken = async(data)=>{  // string
-    let encrypt = encryptPayload({data, type : userTokenRole.registerToken})
+const generateRegisterToken = async (data) => {  // string
+    let encrypt = encryptPayload({ data, type: userTokenRole.registerToken })
     let accessToken = _generateAccessToken(encrypt.payload, userTokenRole.registerToken)
     let refreshToken = _generateRefreshToken(encrypt.payload)
-    let token = {accessToken, refreshToken}
+    let token = { accessToken, refreshToken }
     return token
 }
-const generateLoginToken = async(data)=>{  // string
-    let encrypt = encryptPayload({data, type : userTokenRole.loginToken})
+const generateLoginToken = async (data) => {  // string
+    let encrypt = encryptPayload({ data, type: userTokenRole.loginToken })
     let accessToken = _generateAccessToken(encrypt.payload, userTokenRole.loginToken)
     let refreshToken = _generateRefreshToken(encrypt.payload)
-    let tokens = {accessToken, refreshToken}
+    let tokens = { accessToken, refreshToken }
     return tokens
 }
-
+const generateResetPasswordToken = async (data) => {
+    let encrypt = encryptPayload({data, type : userTokenRole.resetPassToken})
+    let accessToken = _generateAccessToken(encrypt.payload, userTokenRole.resetPassToken)
+    return accessToken
+}
 export default {
     generateUserAccessToken,
     generateRegisterToken,
     generateLoginToken,
-    decryptPayload
+    decryptPayload,
+    generateResetPasswordToken
 }

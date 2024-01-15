@@ -1,27 +1,68 @@
 export const userTokenRole = {
-    registerToken : 'register_token',//
-    refreshToken : 'refresh_token',
-    loginToken : 'login_token',//
-    resetPassToken : 'reset_pass_token',//
-    accessToken : 'access_token'
+    registerToken: 'register',//
+    refreshToken: 'refresh',
+    loginToken: 'login',//
+    resetPassToken: 'reset_pass',//
+    accessToken: 'access',
+    adminAccessToken: 'admin_access'
 }
 
 export const AppString = {
-    TOKEN_EXPIRE : 'token expire',
-    INVALID_SESSION : 'session expire',
-    INVALID_TOKEN : 'invalid token : token must be in format "Bearer token"',
-    SOMETHING_WENT_WRONG : 'Something went wrong',
+    TOKEN_EXPIRE: 'token expire',
+    INVALID_SESSION: 'session expire',
+    INVALID_TOKEN: 'invalid token : token must be in format "Bearer token"',
+    SOMETHING_WENT_WRONG: 'Something went wrong',
 
-    USER_ALREADY_EXIST : 'User already exist with this email',
-    USER_CREATED : 'User created Successfully',
-    USER_NOT_EXIST : 'User not exist with this email',
-    INVALID_PASS : 'Password invalid',
-    PROFILE_INCOMPLETED : 'Profile is incomplete',
-    PROFILE_STEP_1 : 'Step 1 completed successfully',
-    PROFILE_COMPLETED : 'Account set up Sccessfully',
-    DECRYPT_DATA_IS_REQ : 'Data to be Decrypt is required'
+    DECRYPT_DATA_IS_REQ: 'Data to be Decrypt is required',
+
+    USER_ALREADY_EXIST: 'User already exist with this email',
+    USER_CREATED: 'User created Successfully',
+    USER_NOT_EXIST: 'User not exist with this email',
+    USER_IS_NOT_AUTHORIZED: "User is not authorized",
+    USER_RETRIEVED: 'User retrieved successfully',
+    USER_UPDATED: 'User updated successfully',
+    USER_DELETED: 'User deleted successfully',
+
+    PROFILE_INCOMPLETED: 'Profile is incomplete',
+    PROFILE_STEP_1: 'Step 1 completed successfully',
+    PROFILE_COMPLETED: 'Account set up Sccessfully',
+
+    OTP_SENT: "Otp sent Successfully",
+    OTP_VERIFIED: 'Otp verified Successfully',
+    OTP_NOT_MATCHED: "Otp doesn't matched",
+    OTP_EXPIRED: "Otp expire",
+
+    INVALID_PASS: 'Password invalid',
+    PASS_UPDATED: "Password updated successfully",
+    PASS_NOT_MATCHED: 'confirm password should match password',
+
+    ADMIN_NOT_FOUND: "Admin not exist with this email",
+
+    CATEGORY_CREATED: 'Category created successfully',
+    CATEGORY_RETRIEVED: 'Category retrieved successfully',
+    CATEGORY_NOT_AVAILABLE: 'Category not available',
+
+    PRODUCT_CREATED: "Product created successfully",
+    PRODUCT_RETRIEVED: 'Product retrieved successfully',
+    PRODUCT_LIKED: 'Product liked successfully',
+    PRODUCT_UNLIKED: 'Product unliked successfully',
+    PRODUCT_NOT_AVAILABLE_WISH: 'Product not available in wishlist',
+    PRODUCT_NOT_AVAILABLE: 'Product not available',
+
+    OPTION_CREATED: 'Product option created successfully',
+
+    REVIEW_POSTED: 'Review posted successfully',
+    REVIEW_LIKED: 'Review liked successfully',
+    REVIEW_UNLIKED: 'Review unliked successfully',
+    REVIEW_NOT_AVAILABLE: 'Review not available',
+    REVIEW_RETRIEVED: 'Review retrieved successfully'
 }
 
 export const Model = {
-    userModel : 'User'
+    userModel: 'User',
+    otpModel: 'Otp',
+    prodModel: 'Product',
+    catModel: 'Category',
+    reviewModel: 'Review',
+    optionModel: 'Option'
 }

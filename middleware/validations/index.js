@@ -77,6 +77,30 @@ async function verifyRefreshToken(req, res, next) {
             return commonUtils.sendError(req, res, { message: err }, httpStatus.UNAUTHORIZED)
         })
 }
+
+async function verifyAdminAccessToken(req, res, next) {
+    let tokens = req.headers?.authorization?.split(' ') ?? []
+    if (tokens.length <= 1) {
+        return commonUtils.sendError(req, res, { message: AppString.INVALID_TOKEN }, httpStatus.UNAUTHORIZED)
+    }
+    let token = tokens[1]
+    return _verifyJwtToken(token, userTokenRole.adminAccessToken)
+        .then(async (encPayload) => {
+            let decrypt = tokenService.decryptPayload(encPayload.sub)
+            let data = decrypt.data.data
+            let user = await User.findOne({ email: data.email })
+            if (user) {
+                if (user.role == 'admin') {
+                    req.user = user
+                    next()
+                }
+                return commonUtils.sendError(req, res, { message: AppString.USER_IS_NOT_AUTHORIZED }, httpStatus.UNAUTHORIZED)
+            }
+            return commonUtils.sendError(req, res, { message: AppString.USER_IS_NOT_AUTHORIZED }, httpStatus.UNAUTHORIZED)
+        }).catch(e => {
+            return commonUtils.sendError(req, res, { message: e }, httpStatus.INTERNAL_SERVER_ERROR)
+        })
+}
 async function verifyAuthToken(req, res, next) {
     let tokens = req.headers?.authorization?.split(' ') ?? []
     if (tokens.length <= 1) {
@@ -92,6 +116,7 @@ async function verifyAuthToken(req, res, next) {
             req.user = user
             next();
         }
+        // return commonUtils.sendError(req, res, { success: false, message: AppString.USER_NOT_EXIST }, httpStatus.NOT_FOUND)
     } catch (error) {
         return commonUtils.sendError(req, res, { message: error }, httpStatus.UNAUTHORIZED)
     }
@@ -138,5 +163,6 @@ export default {
     verifyAccessToken,
     verifyRefreshToken,
     verifyAuthToken,
-    validate
+    validate,
+    verifyAdminAccessToken
 }
