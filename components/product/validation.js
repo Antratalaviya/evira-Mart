@@ -16,4 +16,15 @@ const createProd = {
         })
     })
 }
-export default createProd
+const postOption = {
+    body : Joi.object().keys({
+        size: V.sizeValidation,
+        color: V.colorValidation,
+        price: V.priceReqValidation,
+        quentity: V.quentityReqValidation
+    })
+}
+export default {
+    createProd,
+    postOption
+}

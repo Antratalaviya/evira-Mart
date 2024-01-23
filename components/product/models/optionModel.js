@@ -20,7 +20,7 @@ const optionSchema = mongoose.Schema({
         dafault: null
     },
     quentity: {
-        type: String,
+        type: Number,
         default: 0,
     },
 }, {

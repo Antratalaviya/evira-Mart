@@ -16,6 +16,35 @@ const createOption = (prodId, body) => {
     }
     return Option.create(data)
 }
+const getOptionById = (optionId) => {
+    const query = {
+        _id: optionId
+    }
+    const data = {
+        _id: 1,
+        product : 1
+    }
+    return Option.findOne(query, data)
+}
+const deleteOption = (optionId) => {
+    const query = {
+        _id: optionId
+    }
+    return Option.deleteOne(query)
+}
+const getFullOption = (optionId) => {
+    const query = {
+        _id: optionId
+    }
+    const data = {
+        _id: 1,
+        size: 1,
+        price: 1,
+        color: 1,
+        quentity: 1
+    }
+    return Option.findOne(query, data)
+}
 const updateProdOption = (prodId, option) => {
     const query = {
         _id: prodId
@@ -146,7 +175,8 @@ const getProdById = (prodId) => {
     }
     const data = {
         _id: 1,
-        likedBy: 1
+        likedBy: 1,
+        defaultOption : 1
     }
     return Product.findOne(query, data)
 }
@@ -163,6 +193,12 @@ const getFullProdById = (prodId) => { //params : id  // name des {size clr price
                 localField: '_id',
                 foreignField: 'product',
                 as: 'options'
+            }
+        },
+        {
+            $unwind: {
+                path: '$options',
+                preserveNullAndEmptyArrays: true
             }
         },
         {
@@ -200,9 +236,9 @@ const getFullProdById = (prodId) => { //params : id  // name des {size clr price
                 description: { $first: '$description' },
                 sold: { $first: '$sold' },
                 picture: { $first: '$picture' },
-                options: { $push: '$options' },
                 reviews: { $push: '$reviews' },
-                defaultOption: { $first: '$defaultOption' }
+                defaultOption: { $first: '$defaultOption' },
+                options: { $addToSet: '$options' },
             }
         },
         {
@@ -229,14 +265,16 @@ const getFullProdById = (prodId) => { //params : id  // name des {size clr price
                         1
                     ]
                 },
-                option: {
-                    $map: {
-                        input: '$options',
-                        as: 'option',
-                        in: {
-                            size: '$$option.size',
-                            price: '$$option.price',
-                            color: '$$option.color'
+                options: {
+                    $map : {
+                        input : '$options',
+                        as : 'option',
+                        in : {
+                            _id : '$$option._id',
+                            color : '$$option.color',
+                            size : '$$option.size',
+                            price : '$$option.price',
+                            quentity : '$$option.quentity'
                         }
                     }
                 }
@@ -374,9 +412,13 @@ const getFilterProd = ({ keyword, category, max_price, min_price, sortBy, rating
     }
     return Product.aggregate(pipeline)
 }
+
 export default {
     createProduct,
     createOption,
+    getOptionById,
+    getFullOption,
+    deleteOption,
     updateProdOption,
     getAllProd,
     updateProdReview,

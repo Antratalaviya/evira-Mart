@@ -6,10 +6,11 @@ import mongoose from 'mongoose';
 
 import { corsOptions } from './utils/corsOptions.js';
 import errorHandler from './middleware/errorHandler/index.js';
-import userRoute from './components/user/index.js';
-import productRoute from './components/product/index.js'
+import userRoutes from './components/user/index.js';
+import productRoutes from './components/product/index.js'
 import categoryRoutes from './components/category/index.js'
 import reviewRoutes from './components/review/index.js'
+import cartRoutes from './components/cart/index.js'
 
 // const environment = process.env.NODE_ENV || 'development';
 // const enviFilePath = environment === 'production' ? '.env.production' : '.env.local';
@@ -37,10 +38,11 @@ app.use(cors(corsOptions));
 app.get('/test', (req, res) => {
     res.send('API is running');
 })
-app.use('/api/v1/user', userRoute)
-app.use('/api/v1/product', productRoute)
+app.use('/api/v1/user', userRoutes)
+app.use('/api/v1/product', productRoutes)
 app.use('/api/v1/category', categoryRoutes)
 app.use('/api/v1/review', reviewRoutes)
+app.use('/api/v1/cart', cartRoutes)
 
 app.use(errorHandler.notFound, errorHandler.errorHandler)
 server.listen(port, async () => {

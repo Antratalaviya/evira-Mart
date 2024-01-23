@@ -22,6 +22,7 @@ export const AppString = {
     USER_RETRIEVED: 'User retrieved successfully',
     USER_UPDATED: 'User updated successfully',
     USER_DELETED: 'User deleted successfully',
+    USER_NOT_LOGIN: 'Please login first',
 
     PROFILE_INCOMPLETED: 'Profile is incomplete',
     PROFILE_STEP_1: 'Step 1 completed successfully',
@@ -50,12 +51,23 @@ export const AppString = {
     PRODUCT_NOT_AVAILABLE: 'Product not available',
 
     OPTION_CREATED: 'Product option created successfully',
+    OPTION_NOT_AVAILABLE: 'Product option is not available',
+    OPTION_DELETED: 'Product option deleted successfully',
+    OPTION_RETRIVED: 'Product option retrieved successfully',
+    OPTION_CAN_NOT_DELETE: 'Product option can not be deleted as it is default option',
 
     REVIEW_POSTED: 'Review posted successfully',
     REVIEW_LIKED: 'Review liked successfully',
     REVIEW_UNLIKED: 'Review unliked successfully',
     REVIEW_NOT_AVAILABLE: 'Review not available',
-    REVIEW_RETRIEVED: 'Review retrieved successfully'
+    REVIEW_RETRIEVED: 'Review retrieved successfully',
+
+    CART_PROD_ADDED: 'Product added to cart successfully',
+    CART_RETRIEVED: 'Cart product retrieved successfully',
+    CART_PRODUCT_REMOVED: 'Cart Product removed successfully',
+    CART_EMPTIED: 'Cart products emptied successfully',
+    CART_PROD_QUEN_DEC: 'Cart product quentity decreased',
+    CART_IS_EMPTY: 'Cart is empty'
 }
 
 export const Model = {
@@ -64,5 +76,6 @@ export const Model = {
     prodModel: 'Product',
     catModel: 'Category',
     reviewModel: 'Review',
-    optionModel: 'Option'
+    optionModel: 'Option',
+    cartModel: 'Cart'
 }

@@ -101,13 +101,57 @@ const getFilterProd = async (req, res) => {
     }
     return commonUtils.sendSuccess(req, res, { success: true, message: AppString.PRODUCT_RETRIEVED, products }, httpStatus.OK)
 }
+const postOption = async (req, res) => {  //body //admin
+    const body = req.body
+    if (!(await userService.getUserById(req.user._id))) {
+        return commonUtils.sendError(req, res, { success: false, message: AppString.ADMIN_NOT_FOUND }, httpStatus.NOT_FOUND)
+    }
+    let product = await productService.getProdById(body.product)
+    if (!product) {
+        return commonUtils.sendError(req, res, { success: true, message: AppString.PRODUCT_NOT_AVAILABLE }, httpStatus.NOT_FOUND)
+    }
+    delete body.product
+    await productService.createOption(product._id, body)
+    return commonUtils.sendSuccess(req, res, { success: true, message: AppString.OPTION_CREATED }, httpStatus.OK)
+}
 
+const deleteOption = async (req, res) => {
+    const { id } = req.params //optionId
+    if (!(await userService.getUserById(req.user._id))) {
+        return commonUtils.sendError(req, res, { success: false, message: AppString.ADMIN_NOT_FOUND }, httpStatus.NOT_FOUND)
+    }
+    let option = await productService.getOptionById(id)
 
+    if (!option) {
+        return commonUtils.sendError(req, res, { success: false, message: AppString.OPTION_NOT_AVAILABLE }, httpStatus.NOT_FOUND)
+    }
+    let product = await productService.getProdById(option.product)
+    if (product.defaultOption.toString() === option._id.toString()) {
+        return commonUtils.sendError(req, res, { success: false, message: AppString.OPTION_CAN_NOT_DELETE }, httpStatus.NOT_FOUND)
+    }
+    await productService.deleteOption(id)
+    return commonUtils.sendSuccess(req, res, { success: true, message: AppString.OPTION_DELETED }, httpStatus.OK)
+}
+const getOption = async (req, res) => {
+    const { id } = req.params
+    if (!(await userService.getUserById(req.user._id))) {
+        return commonUtils.sendError(req, res, { success: false, message: AppString.ADMIN_NOT_FOUND }, httpStatus.NOT_FOUND)
+    }
+    let option = await productService.getFullOption(id)
+    if (!option) {
+        return commonUtils.sendError(req, res, { success: false, message: AppString.OPTION_NOT_AVAILABLE }, httpStatus.NOT_FOUND)
+    }
+    return commonUtils.sendSuccess(req, res, { success: true, message: AppString.OPTION_RETRIVED, option }, httpStatus.OK)
+
+}
 export default {
     createProd,
     getAllProduct,
     likeProduct,
     getProduct,
     getAllCatProd,
-    getFilterProd
+    getFilterProd,
+    postOption,
+    deleteOption,
+    getOption
 }

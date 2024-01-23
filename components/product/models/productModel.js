@@ -23,7 +23,7 @@ const productSchema = mongoose.Schema({
         }
     ],
     quentity: {
-        type: String,
+        type: Number,
         required: true
     },
     price: {
