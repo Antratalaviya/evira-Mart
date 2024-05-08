@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verification Email</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <style>
+    * {
+      font-family: "Poppins", sans-serif !important;
+      padding: 0px;
+      margin: 0px;
+      box-sizing: border-box;
+      clear: both;
+    }
+
+    body {
+      width: 100%;
+      overflow-x: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .main-container {
+      width: 95%;
+      height: auto;
+      border: 1px solid black;
+      margin: 50px 10px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 7px 0px rgb(201, 199, 199);
+    }
+
+    .line {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      align-content: center;
+      border-bottom: 1px solid black;
+      padding: 20px;
+      background-color: black;
+    }
+
+    .line p {
+      font-size: 20px;
+      font-weight: 600;
+      color: white;
+    }
+
+    .p {
+      font-size: 18px;
+      font-weight: 500;
+      color: rgb(45, 45, 45);
+    }
+
+    .container {
+      padding: 30px 20px;
+    }
+
+    .otp_text {
+      color: #ffffff;
+      font-weight: 600;
+      font-size: 25px;
+    }
+
+    .otp_box {
+      height: auto;
+      width: 100%;
+      background-color: black;
+      border-radius: 5px;
+      padding: 20px;
+    }
+
+    .otp_box p {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .mb_4 {
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="main-container">
+    <div class="line">
+      <p>eviraMart</p>
+    </div>
+    <div class="container">
+      <p class="p">This is from eviraMart</p>
+      <div class="main-description"><br />
+        <p class="p">Dear valued customer</p>
+        <p class="mb_4">
+          Please utilize this one-time verification code for your
+          current transaction on our web or mobile app
+        </p>
+        <p class="mb_4 p">Your Verification Code:</p>
+        <div class="otp_box mb_4">
+          <p class="otp_text"><%- otp %></p>
+        </div>
+        <p class="mb_4">
+          If you did not request this verification code, please
+          disregard this email. Please do not reply to this email, as it is
+          not monitored.
+        </p>
+        <p class="mb_4 p">Thank you for visiting.</p>
+        <p>Best regards,</p>
+        <p>eviraMart Team</p>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

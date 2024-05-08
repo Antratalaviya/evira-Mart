@@ -1,0 +1,32 @@
+{
+  "name": "coinpay",
+  "version": "1.0.0",
+  "description": "Coinpay Fintech Finance backend",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "Antra talaviya",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^16.3.1",
+    "ejs": "^3.1.9",
+    "eventemitter3": "^5.0.1",
+    "express": "^4.18.2",
+    "handlebars": "^4.7.8",
+    "http": "^0.0.1-security",
+    "http-status": "^1.7.3",
+    "joi": "^17.11.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.3",
+    "nodemailer": "^6.9.8",
+    "nodemon": "^3.0.2",
+    "slugify": "^1.6.6"
+  }
+}
