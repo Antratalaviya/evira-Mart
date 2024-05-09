@@ -17,8 +17,6 @@ Build more secure and high performence backend of EviraMart ecommerce applicatio
 - EventEmitter
 - crypto.js
 
----
-
 To turn on the encryption and decryption at request and response, you will have to set True to isEncrypt variable at routes.
 
 ---
@@ -50,11 +48,11 @@ If you need to update `npm`, you can make it using `npm`! Cool right? After runn
 ### local installation:
 #### 1. clone the repo
 
-    $ git clone https://github.com/Antratalaviya/evira-Mart.git
+    $ git clone https://github.com/Antratalaviya/evira-Mart.git <repo>
 
 #### 2. cd into cloned repo
 
-    $ cd repo
+    $ cd <repo>
 
 #### 3. install dependencies
 
